@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const Home = () => {
-  return <div></div>;
-};
+function Home() {
+  return (
+    <div>
+      <p>가나다라마바사</p>
+    </div>
+  );
+}
 
 export default Home;
