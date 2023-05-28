@@ -4,11 +4,11 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset};
   @font-face {
-    font-family: 'Pretendard-REGULAR';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 900;
+    font-family: 'BM-JUA';
+    src: url('https://cdn.jsdelivr.net/gh/wizfile/font/BM-JUA.eot');
+    src:url('https://cdn.jsdelivr.net/gh/wizfile/font/BM-JUA.woff') format('woff');
     font-style: normal;
-  }
+}
   html,
   body {
     display: flex;
