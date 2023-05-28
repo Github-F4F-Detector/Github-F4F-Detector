@@ -3,7 +3,12 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
-  
+  @font-face {
+    font-family: 'Pretendard-REGULAR';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+  }
   html,
   body {
     display: flex;
@@ -19,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   
   #root {
     margin: 0 auto;
+    font-family: 'Jua', sans-serif;
   }
  
   html {

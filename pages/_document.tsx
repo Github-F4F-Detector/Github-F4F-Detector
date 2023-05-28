@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />), //gets the styles from all the components inside <App>
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
         });
       const initialProps = await Document.getInitialProps(ctx);
       return {
@@ -19,16 +19,6 @@ export default class MyDocument extends Document {
         styles: [
           <>
             {initialProps.styles}
-            <Html lang="en">
-              <Head>
-                {/* <title>깃허브 맞팔 탐지기</title> */}
-                <meta charSet="utf-8"></meta>
-              </Head>
-              <body>
-                <Main />
-                <NextScript />
-              </body>
-            </Html>
             {sheet.getStyleElement()}
           </>,
         ],
@@ -36,5 +26,17 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render(): JSX.Element {
+    return (
+      <Html lang="ko">
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
