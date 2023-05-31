@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLOR } from '@/styles/colors';
 
 function Home() {
   return (
@@ -12,7 +13,7 @@ function Home() {
 export default Home;
 
 const Test = styled.p`
-  color: ${props => props.theme.colors.main_pink};
+  color: ${COLOR.main_pink};
   font-size: 10rem;
   font-family: 'BM-JUA';
 `;
