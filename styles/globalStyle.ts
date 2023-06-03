@@ -33,6 +33,8 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+    
+    font-family: 'BM-JUA'!important;
   }
   
   body, button {
