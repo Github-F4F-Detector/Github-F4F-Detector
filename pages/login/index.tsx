@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { GithubIcon } from 'public/icon';
 import styled from 'styled-components';
 
@@ -9,7 +10,9 @@ function Login() {
   return (
     <St.LoginPageContainer>
       <St.LoginBox>
-        <St.CreateTokenButton type="button">Github Token 만들러 가기</St.CreateTokenButton>
+        <Link href="/">
+          <St.CustomLink>Github Token 만들러 가기</St.CustomLink>
+        </Link>
         <St.TokenInput placeholder="Github Token을 입력해주세요" />
         <St.DetectButton type="button">나의 맞팔 확인하기</St.DetectButton>
         <span>or</span>
@@ -54,8 +57,14 @@ const St = {
       margin: 0.9rem auto;
       font-size: 1.4rem;
     }
+
+    & > a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   `,
-  CreateTokenButton: styled.button`
+  CustomLink: styled.a`
     border-radius: 9rem;
 
     box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
