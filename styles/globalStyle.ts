@@ -12,14 +12,14 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     display: flex;
+    position: relative;
     flex-direction: column;
+    margin: 0 auto;
+    background-color: #F1EFEA;
     max-width: 100vw;
     min-height: 100vh;
     /* mobile viewport bug fix */
-    min-height: -webkit-fill-available;
-    margin: 0 auto;
-    position: relative;
-    background-color: #F1EFEA;
+    min-height: fill-available;
   }
   
   #root {
@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     
-    font-family: 'BM-JUA'!important;
+    font-family: 'BM-JUA'!important; 
   }
   
   body, button {
@@ -43,16 +43,16 @@ const GlobalStyle = createGlobalStyle`
   }
   
   button {
-    cursor: pointer;
-    border: none;
     outline: none;
+    border: none;
     background-color: transparent;
+    cursor: pointer;
     -webkit-tap-highlight-color : transparent;
   }
   
   a, a:visited {
     text-decoration: none;
-    color: black;
+    color: "black";
   }
 `;
 
