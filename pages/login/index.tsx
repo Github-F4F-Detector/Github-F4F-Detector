@@ -118,13 +118,13 @@ const St = {
   `,
   LoginContainer: styled.div`
     display: flex;
+    gap: 2rem;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     width: 100%;
 
     & > span {
-      margin-left: 1.2rem;
       font-size: 1.1rem;
     }
   `,
