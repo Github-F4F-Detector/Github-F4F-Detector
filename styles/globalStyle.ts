@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     flex-direction: column;
     margin: 0 auto;
-    background-color: #F1EFEA;
+    background-color: #FBF7ED;
     max-width: 100vw;
     min-height: 100vh;
     /* mobile viewport bug fix */
