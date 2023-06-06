@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { GithubIcon } from 'public/icon';
+import { GithubIcon, InfoIcon } from 'public/icon';
 import { useSetRecoilState } from 'recoil';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
@@ -13,24 +13,30 @@ function Login() {
   const [tokenInput, setTokenInput] = useState('');
   const setUserToken = useSetRecoilState(userTokenState);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setTokenInput(value);
   };
 
-  const handleOnClick = () => {
+  const handleOnClickDetect = () => {
     setUserToken(tokenInput);
     router.push('/home');
   };
 
+  const handleOnClickInfo = () => {};
+
   return (
     <St.LoginPageContainer>
       <St.LoginBox>
-        <St.CustomLink href="https://github.com/settings/tokens" target="_blank">
+        <St.CreateToken href="https://github.com/settings/tokens" target="_blank">
           Github Token 만들러 가기
-        </St.CustomLink>
-        <St.TokenInput placeholder="Github Token을 입력해주세요" value={tokenInput} onChange={handleOnChange} />
-        <St.DetectButton type="button" onClick={handleOnClick}>
+        </St.CreateToken>
+        <St.CreateTokenContainer>
+          <Image src={InfoIcon} alt="정보 아이콘" width={20} height={20} onClick={handleOnClickInfo} />
+          토큰 발급시 권한 user(Update ALL user data)를 체크해주세요!
+        </St.CreateTokenContainer>
+        <St.TokenInput placeholder="Github Token을 입력해주세요" value={tokenInput} onChange={handleOnChangeInput} />
+        <St.DetectButton type="button" onClick={handleOnClickDetect}>
           나의 맞팔 확인하기
         </St.DetectButton>
         <span>or</span>
@@ -82,9 +88,22 @@ const St = {
       justify-content: center;
     }
   `,
-  CustomLink: styled.a`
-    border-radius: 9rem;
+  CreateTokenContainer: styled.div`
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    margin-top: 0.7rem;
 
+    height: 2.5rem;
+
+    font-size: 1.1rem;
+  `,
+  CreateToken: styled.a`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9rem;
     box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
 
     background-color: ${COLOR.main_green};
