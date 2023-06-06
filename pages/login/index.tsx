@@ -20,7 +20,7 @@ function Login() {
 
   const handleOnClickDetect = () => {
     setUserToken(tokenInput);
-    router.push('/home');
+    router.push('/follow-list');
   };
 
   const handleOnClickInfo = () => {};
