@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { GithubIcon } from 'public/icon';
+import { useSetRecoilState } from 'recoil';
+import { userTokenState } from 'states/user';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
 function Login() {
+  const router = useRouter();
+  const [tokenInput, setTokenInput] = useState('');
+  const setUserToken = useSetRecoilState(userTokenState);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setTokenInput(value);
+  };
+
+  const handleOnClick = () => {
+    setUserToken(tokenInput);
+    router.push('/home');
+  };
+
   return (
     <St.LoginPageContainer>
       <St.LoginBox>
         <Link href="/">
           <St.CustomLink>Github Token 만들러 가기</St.CustomLink>
         </Link>
-        <St.TokenInput placeholder="Github Token을 입력해주세요" />
-        <St.DetectButton type="button">나의 맞팔 확인하기</St.DetectButton>
+        <St.TokenInput placeholder="Github Token을 입력해주세요" value={tokenInput} onChange={handleOnChange} />
+        <St.DetectButton type="button" onClick={handleOnClick}>
+          나의 맞팔 확인하기
+        </St.DetectButton>
         <span>or</span>
         <St.LoginContainer>
           <span>깃허브 로그인으로 간단하게 확인하기 👉</span>
