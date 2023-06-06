@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { GithubIcon } from 'public/icon';
 import { useSetRecoilState } from 'recoil';
@@ -27,9 +26,9 @@ function Login() {
   return (
     <St.LoginPageContainer>
       <St.LoginBox>
-        <Link href="/">
-          <St.CustomLink>Github Token 만들러 가기</St.CustomLink>
-        </Link>
+        <St.CustomLink href="https://github.com/settings/tokens" target="_blank">
+          Github Token 만들러 가기
+        </St.CustomLink>
         <St.TokenInput placeholder="Github Token을 입력해주세요" value={tokenInput} onChange={handleOnChange} />
         <St.DetectButton type="button" onClick={handleOnClick}>
           나의 맞팔 확인하기
