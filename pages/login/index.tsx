@@ -19,7 +19,7 @@ function Login() {
         <St.LoginContainer>
           <span>깃허브 로그인으로 간단하게 확인하기 👉</span>
           <St.LoginButton type="button">
-            <Image src={GithubIcon} alt="깃허브 로고" />
+            <Image src={GithubIcon} alt="깃허브 로고" width={19} height={18} />
             깃허브 로그인
           </St.LoginButton>
         </St.LoginContainer>
