@@ -1,90 +1,62 @@
-import React, { useEffect, useState } from 'react';
-import { fetchNotFollowingUsers } from 'api/followData';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
-import UserList from './UserList';
-
-interface User {
-  login: string;
-}
+import { useGithubFollowAPI } from '../../api/followData';
 
 function FollowListBody() {
-  const [notFollowing, setNotFollowing] = useState<User[]>([]);
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const { data: currentUser } = useGithubFollowAPI('/user');
+  const [showFollowingList, setShowFollowingList] = useState(false);
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const token = '토큰입력';
-        const notFollowingUsers = await fetchNotFollowingUsers(token);
-        setNotFollowing(notFollowingUsers);
-      } catch (error: any) {
-        console.error('오류 발생:', error.response.data.message);
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  const handleCheckboxChange = (value: string, checked: boolean) => {
-    if (checked) {
-      setSelectedUsers(prevSelectedUsers => [...prevSelectedUsers, value]);
-    } else {
-      setSelectedUsers(prevSelectedUsers => prevSelectedUsers.filter(user => user !== value));
+    if (currentUser) {
+      const fetchFollowers = async () => {
+        const response = await fetch(`https://api.github.com/user/following`, {
+          headers: {
+            // Authorization: `Bearer ${}`,
+          },
+        });
+      };
     }
-  };
+  });
 
   return (
-    <St.ListBackgroundContainer>
-      <St.MyProfileContainer>여기는 본인 프로필 정보를 보여주는 곳</St.MyProfileContainer>
-      <div>
-        <button type="button">맞팔이 아닌 사람</button> <button type="button">맞팔 확인하기</button>
-      </div>
-      <div>
-        <St.ListBackgroundWrapper>
-          <St.ListBackground>
-            <UserList users={notFollowing} selectedUsers={selectedUsers} onCheckboxChange={handleCheckboxChange} />
-          </St.ListBackground>
-        </St.ListBackgroundWrapper>
-      </div>
-    </St.ListBackgroundContainer>
+    <div>
+      <St.ButtonContainer>
+        <St.NoneFollowButton type="button"> 맞팔 아닌 사람</St.NoneFollowButton>
+        <St.FollowButton type="button"> 맞팔 확인하기</St.FollowButton>
+      </St.ButtonContainer>
+    </div>
   );
 }
 
 export default FollowListBody;
 
 const St = {
-  MyProfileContainer: styled.div`
-    width: 34rem;
-    height: 15.6rem;
-    margin-top: 3.2rem;
-    border: 0.1rem solid black;
-  `,
-  ListBackground: styled.div`
-    position: absolute;
-    bottom: 8.4rem;
-    left: -0.2rem;
-    width: 39rem;
-    height: 37.6rem;
-    border: 0.2rem solid ${COLOR.main_black};
-    border-radius: 6rem;
-    background-color: ${COLOR.main_white};
-  `,
-  ListBackgroundWrapper: styled.div`
-    position: fixed;
-    bottom: -1.6rem;
-    width: 39rem;
-    height: 50.8rem;
-    border: 0.2rem solid ${COLOR.main_black};
-    border-radius: 6rem;
-    background-color: ${COLOR.main_white};
-  `,
-
-  ListBackgroundContainer: styled.div`
+  ButtonContainer: styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 1.4rem;
+  `,
+  NoneFollowButton: styled.button`
+    width: 10.5rem;
+    height: 3.6rem;
+    margin-right: 4.5rem;
+    background-color: ${COLOR.main_green};
+    color: ${COLOR.main_black};
+    border: 0.2rem solid ${COLOR.main_black};
+    border-radius: 2.6rem;
+  `,
+  FollowButton: styled.button`
+    width: 10.5rem;
+    height: 3.6rem;
+    background-color: ${COLOR.main_white};
+    color: ${COLOR.main_black};
+    border: 0.2rem solid ${COLOR.main_black};
+    border-radius: 2.6rem;
   `,
 };
