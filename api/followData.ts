@@ -4,7 +4,7 @@ interface User {
   login: string;
 }
 
-export const fetchNonFollowingUsers = async (token: string): Promise<User[]> => {
+export const fetchNonFollowingUsers = async (token: string): Promise<{ following: User[]; nonFollowing: User[] }> => {
   const BASE_URL = 'https://api.github.com';
 
   const followingResponse = await axios.get<User[]>(`${BASE_URL}/user/following`, {
@@ -27,5 +27,5 @@ export const fetchNonFollowingUsers = async (token: string): Promise<User[]> => 
     return !following.some(followedUser => followedUser.login === user.login);
   });
 
-  return nonFollowing;
+  return { nonFollowing, following };
 };
