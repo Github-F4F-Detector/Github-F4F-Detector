@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNonFollowingUsers } from 'api/followData';
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from 'states/user';
 
 import FollowListMap from './FollowListMap';
 
@@ -9,12 +11,12 @@ interface User {
 }
 
 function FollowListBody() {
-  const token = '실제 토큰 자리';
+  const userToken = useRecoilValue(userTokenState);
   const {
     data: nonFollowingUsers,
     isLoading,
     isError,
-  } = useQuery<User[], Error>(['nonFollowingUsers', token], () => fetchNonFollowingUsers(token));
+  } = useQuery<User[], Error>(['nonFollowingUsers', userToken], () => fetchNonFollowingUsers(userToken));
 
   if (isLoading) {
     return <div>로딩중...</div>;
