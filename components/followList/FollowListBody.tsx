@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNonFollowingUsers } from 'api/followData';
+import Image from 'next/image';
+import { ListBackgroundIcon } from 'public/icon';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
@@ -50,10 +52,11 @@ function FollowListBody() {
       </St.ButtonContainer>
 
       {selectedFollow ? (
-        <FollowListMap users={followLists?.nonFollowing || []} />
+        <FollowListMap users={followLists?.nonFollowing || []} showCheckbox />
       ) : (
-        <FollowListMap users={followLists?.following || []} />
+        <FollowListMap users={followLists?.following || []} showCheckbox={false} />
       )}
+      <Image src={ListBackgroundIcon} alt="리스트 배경 이미지" className="backgroundImage" />
     </div>
   );
 }
@@ -78,6 +81,7 @@ const St = {
   FollowButton: styled.button`
     width: 10.5rem;
     height: 3.6rem;
+    margin: 1.4rem;
     background-color: ${COLOR.main_white};
     color: ${COLOR.main_black};
     border: 0.2rem solid ${COLOR.main_black};
