@@ -25,8 +25,9 @@ function FollowListBody() {
     data: followLists,
     isLoading,
     isError,
-  } = useQuery<{ following: User[]; nonFollowing: User[] }, Error>(['followLists', userToken], () =>
-    fetchNonFollowingUsers(userToken),
+  } = useQuery<{ following: User[]; nonFollowing: User[]; matchingUsers: User[] }, Error>(
+    ['followLists', userToken],
+    () => fetchNonFollowingUsers(userToken),
   );
 
   if (isLoading) {
@@ -59,7 +60,7 @@ function FollowListBody() {
           <FollowListMap users={followLists?.nonFollowing || []} showCheckbox />
         </div>
       ) : (
-        <FollowListMap users={followLists?.following || []} showCheckbox={false} />
+        <FollowListMap users={followLists?.matchingUsers || []} showCheckbox={false} />
       )}
       <St.BackgroundImage />
     </div>
