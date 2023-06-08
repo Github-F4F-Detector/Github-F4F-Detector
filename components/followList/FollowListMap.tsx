@@ -16,7 +16,7 @@ function FollowListMap({ users, showCheckbox }: FollowListProps) {
     <St.AllListContainer>
       <St.ListWrapper>
         {users.map(user => (
-          <FollowListItem key={user.login} user={user} showCheckbox={showCheckbox} />
+          <FollowListItem key={user.login} user={user} avatar_url={user.avatar_url} showCheckbox={showCheckbox} />
         ))}
       </St.ListWrapper>
     </St.AllListContainer>
@@ -27,8 +27,8 @@ export default FollowListMap;
 
 const St = {
   AllListContainer: styled.div`
-    overflow: scroll;
     width: 39rem;
+    overflow: scroll;
     height: 44.6rem;
     position: absolute;
     bottom: 0;

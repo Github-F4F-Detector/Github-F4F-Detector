@@ -13,6 +13,7 @@ import MyProfile from './MyProfile';
 
 interface User {
   login: string;
+  avatar_url: string;
 }
 
 function FollowListBody() {

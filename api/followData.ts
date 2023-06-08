@@ -2,6 +2,7 @@ import axios from 'axios';
 
 interface User {
   login: string;
+  avatar_url: string;
 }
 
 export const fetchNonFollowingUsers = async (token: string): Promise<{ following: User[]; nonFollowing: User[] }> => {
