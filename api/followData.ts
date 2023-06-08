@@ -1,11 +1,31 @@
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
-const API_BASE_URL = 'https://api.github.com';
-
-const queryClient = new QueryClient();
-
-function useGithubFollowAPI<T>(path: string) {
-  return useQuery<T, Error>(['data', path], () => fetch(`${API_BASE_URL}${path}`).then(res => res.json()));
+interface User {
+  login: string;
 }
 
-export { QueryClientProvider, useGithubFollowAPI, queryClient };
+export const fetchNonFollowingUsers = async (token: string): Promise<User[]> => {
+  const BASE_URL = 'https://api.github.com';
+
+  const followingResponse = await axios.get<User[]>(`${BASE_URL}/user/following`, {
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  });
+
+  const following = followingResponse.data;
+
+  const followersResponse = await axios.get<User[]>(`${BASE_URL}/user/followers`, {
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  });
+
+  const followers = followersResponse.data;
+
+  const nonFollowing = followers.filter(user => {
+    return !following.some(followedUser => followedUser.login === user.login);
+  });
+
+  return nonFollowing;
+};
