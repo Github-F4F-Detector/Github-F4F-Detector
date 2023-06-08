@@ -1,0 +1,34 @@
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchNonFollowingUsers } from 'api/followData';
+
+import FollowListMap from './FollowListMap';
+
+interface User {
+  login: string;
+}
+
+function FollowListBody() {
+  const token = '실제 토큰 자리';
+  const {
+    data: nonFollowingUsers,
+    isLoading,
+    isError,
+  } = useQuery<User[], Error>(['nonFollowingUsers', token], () => fetchNonFollowingUsers(token));
+
+  if (isLoading) {
+    return <div>로딩중...</div>;
+  }
+
+  if (isError) {
+    return <div>데이터 패치 중 에러발생.</div>;
+  }
+
+  return (
+    <div>
+      <FollowListMap users={nonFollowingUsers} />
+    </div>
+  );
+}
+
+export default FollowListBody;
