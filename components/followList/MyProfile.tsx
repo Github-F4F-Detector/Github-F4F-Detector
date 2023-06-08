@@ -60,13 +60,13 @@ const St = {
   FollowingWrapper: styled.div`
     display: flex;
     justify-content: center;
+    margin: 0.9rem 0 0 0.8rem;
+    border: 0.1rem solid ${COLOR.main_black};
+    border-radius: 0.7rem;
+    box-shadow: 0 0.3rem 0 rgba(0, 0, 0, 0.25);
+    background: ${COLOR.main_white};
     width: 8.8rem;
     height: 3.1rem;
-    background: ${COLOR.main_white};
-    border: 0.1rem solid ${COLOR.main_black};
-    box-shadow: 0 0.3rem 0 rgba(0, 0, 0, 0.25);
-    border-radius: 0.7rem;
-    margin: 0.9rem 0 0 0.8rem;
     font-size: 1.2rem;
   `,
   Following: styled.p`
@@ -76,13 +76,13 @@ const St = {
   FollowerWrapper: styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 0.9rem;
+    border: 0.1rem solid ${COLOR.main_black};
+    border-radius: 0.7rem;
+    box-shadow: 0 0.3rem 0 rgba(0, 0, 0, 0.25);
+    background: ${COLOR.main_pink};
     width: 8.8rem;
     height: 3.1rem;
-    background: ${COLOR.main_pink};
-    border: 0.1rem solid ${COLOR.main_black};
-    box-shadow: 0 0.3rem 0 rgba(0, 0, 0, 0.25);
-    border-radius: 0.7rem;
-    margin-top: 0.9rem;
     font-size: 1.2rem;
   `,
   Follower: styled.p`
@@ -102,15 +102,15 @@ const St = {
   `,
   UserInfoContainer: styled.div`
     display: flex;
-    width: 34rem;
-    height: 14.6rem;
     margin: 3.2rem 2.5rem 0 2.5rem;
-    background-color: ${COLOR.main_yellow};
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 2.6rem;
+    background-color: ${COLOR.main_yellow};
+    width: 34rem;
+    height: 14.6rem;
   `,
   ProfileImage: styled.img`
-    border-radius: 6rem;
     margin: 2.7rem 0 0 2.4rem;
+    border-radius: 6rem;
   `,
 };

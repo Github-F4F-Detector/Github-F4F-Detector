@@ -31,18 +31,18 @@ export default FollowListItem;
 const St = {
   ListUserInfo: styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
   `,
   FollowListProfile: styled.img`
-    border-radius: 6rem;
     margin-right: 1.7rem;
+    border-radius: 6rem;
   `,
   UserListWrapper: styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 2.2rem 0 2.7rem 0;
+    justify-content: space-between;
     border-bottom: 0.2rem solid ${COLOR.main_black};
+    padding: 2.2rem 0 2.7rem 0;
   `,
 };

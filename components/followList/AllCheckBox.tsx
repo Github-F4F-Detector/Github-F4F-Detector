@@ -22,14 +22,14 @@ export default AllCheckBox;
 const St = {
   AllNonCheckboxWrapper: styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 56px;
-    height: 17px;
+    justify-content: center;
     margin-left: 0.9rem;
-    background: #f9dda0;
     border: 1px solid #000000;
     border-radius: 4px;
+    background: #f9dda0;
+    width: 56px;
+    height: 17px;
   `,
   AllCheckboxText: styled.p`
     margin-left: 0.4rem;
@@ -38,20 +38,20 @@ const St = {
 
   AllCheckboxWrapper: styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 56px;
-    height: 17px;
-    background: #f9dda0;
+    justify-content: center;
     border: 1px solid #000000;
     border-radius: 4px;
+    background: #f9dda0;
+    width: 56px;
+    height: 17px;
   `,
 
   SelectContainer: styled.div`
     display: flex;
     position: absolute;
-    right: 4rem;
     top: 27rem;
+    right: 4rem;
     z-index: 2;
   `,
 };

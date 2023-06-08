@@ -73,38 +73,38 @@ const St = {
     overflow: hidden;
   `,
   BackgroundImage: styled.div`
-    width: 39rem;
-    height: 50.8rem;
     position: relative;
     left: 0rem;
-    background-color: ${COLOR.main_white};
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 6rem;
+    background-color: ${COLOR.main_white};
+    width: 39rem;
+    height: 50.8rem;
   `,
   ButtonContainer: styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.4rem 6.8rem 1.4rem 6.7rem;
     width: 25.5rem;
     height: 3.6rem;
-    justify-content: center;
-    align-items: center;
-    margin: 1.4rem 6.8rem 1.4rem 6.7rem;
   `,
   NoneFollowButton: styled.button`
-    width: 10.5rem;
-    height: 3.6rem;
     margin-right: 4.5rem;
-    background-color: ${COLOR.main_green};
-    color: ${COLOR.main_black};
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 2.6rem;
+    background-color: ${COLOR.main_green};
+    width: 10.5rem;
+    height: 3.6rem;
+    color: ${COLOR.main_black};
   `,
   FollowButton: styled.button`
-    width: 10.5rem;
-    height: 3.6rem;
     margin: 1.4rem;
-    background-color: ${COLOR.main_white};
-    color: ${COLOR.main_black};
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 2.6rem;
+    background-color: ${COLOR.main_white};
+    width: 10.5rem;
+    height: 3.6rem;
+    color: ${COLOR.main_black};
   `,
 };

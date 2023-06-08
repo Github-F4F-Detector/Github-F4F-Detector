@@ -27,23 +27,23 @@ export default FollowListMap;
 
 const St = {
   AllListContainer: styled.div`
-    width: 39rem;
-    overflow: scroll;
-    height: 44.6rem;
     position: absolute;
     bottom: 0;
     left: 2rem;
+    z-index: 2;
     margin: 0 -2rem;
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 6rem;
-    z-index: 2;
+    width: 39rem;
+    height: 44.6rem;
+    overflow: scroll;
   `,
 
   ListWrapper: styled.ul`
     position: relative;
     top: 0rem;
+    z-index: 3;
     margin: 0 4.4rem;
     font-size: 1.5rem;
-    z-index: 3;
   `,
 };
