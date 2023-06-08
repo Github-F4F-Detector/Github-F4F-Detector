@@ -9,8 +9,9 @@ export const fetchNonFollowingUsers = async (
   token: string,
 ): Promise<{ following: User[]; nonFollowing: User[]; matchingUsers: User[] }> => {
   const BASE_URL = 'https://api.github.com';
+  const PER_PAGE = 100;
 
-  const followingResponse = await axios.get<User[]>(`${BASE_URL}/user/following`, {
+  const followingResponse = await axios.get<User[]>(`${BASE_URL}/user/following?per_page=${PER_PAGE}`, {
     headers: {
       Authorization: `token ${token}`,
     },
@@ -26,10 +27,7 @@ export const fetchNonFollowingUsers = async (
 
   const followers = followersResponse.data;
 
-  const nonFollowing = following.filter(user => {
-    return !followers.some(follower => follower.login === user.login);
-  });
-
+  const nonFollowing = followers.filter(follower => !following.some(user => user.login === follower.login));
   const matchingUsers = followers.filter(follower => {
     return following.some(user => user.login === follower.login);
   });
