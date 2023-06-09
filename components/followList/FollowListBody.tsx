@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNonFollowingUsers } from 'api/followData';
+import Image from 'next/image';
+import { UpArrowIcon } from 'public/icon';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
@@ -42,6 +44,8 @@ function FollowListBody() {
     setSelectedFollow(false);
   };
 
+  const handleGoFollow = () => {};
+
   return (
     <div>
       <MyProfile />
@@ -62,6 +66,12 @@ function FollowListBody() {
       ) : (
         <FollowListMap users={followLists?.matchingUsers || []} showCheckbox={false} />
       )}
+      <St.FollowButtonContainer>
+        <Image src={UpArrowIcon} alt="맞팔하기 컨테이너 올리기 버튼" />
+        <St.GoFollowButton type="button" onClick={handleGoFollow}>
+          맞팔하기!
+        </St.GoFollowButton>
+      </St.FollowButtonContainer>
       <St.BackgroundImage />
     </div>
   );
@@ -106,5 +116,30 @@ const St = {
     width: 10.5rem;
     height: 3.6rem;
     color: ${COLOR.main_black};
+  `,
+  FollowButtonContainer: styled.div`
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    border: 0.1rem solid ${COLOR.main_black};
+
+    border-radius: 1.3rem;
+    background-color: ${COLOR.main_white};
+    padding-top: 0.9rem;
+
+    width: 39rem;
+    height: 9rem;
+  `,
+  GoFollowButton: styled.button`
+    margin-top: 1rem;
+    border: 0.2rem solid ${COLOR.main_black};
+    border-radius: 0.3rem;
+    background-color: ${COLOR.main_yellow};
+
+    width: 33.5rem;
+    height: 4rem;
   `,
 };
