@@ -1,9 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import { useRecoilValue } from 'recoil';
-import { userTokenState } from 'states/user';
 
-export const Client = () => {
-  const token = useRecoilValue(userTokenState);
+export const Client = (token: string) => {
   const client: AxiosInstance = axios.create({
     baseURL: 'https://api.github.com',
     headers: {
