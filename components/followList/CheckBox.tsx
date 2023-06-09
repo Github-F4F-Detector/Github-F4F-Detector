@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
+import { checkListState } from 'states/follow';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
-function Checkbox({ text }: any) {
+function Checkbox({ text, login }: any) {
+  const [checkList, setCheckList] = useRecoilState(checkListState);
+  // check된 항목 배열에 추가/삭제 함수
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+
+    if (checkList.includes(value)) {
+      const newArr = checkList.filter(item => item !== value);
+      setCheckList(newArr);
+    } else {
+      setCheckList([...checkList, value]);
+    }
+  };
   return (
     <St.Label htmlFor={text}>
-      <St.Input type="checkbox" id={text} name={text} />
+      <St.Input type="checkbox" id={text} name={text} value={login} onChange={handleOnChange} />
       <St.Text>{text}</St.Text>
     </St.Label>
   );
