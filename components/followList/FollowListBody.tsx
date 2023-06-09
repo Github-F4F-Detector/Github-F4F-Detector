@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNonFollowingUsers } from 'api/followData';
+import { useFollowUnFollowedUser } from 'hooks/user';
 import Image from 'next/image';
 import { UpArrowIcon } from 'public/icon';
 import { useRecoilValue } from 'recoil';
+import { checkListState } from 'states/follow';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
 
@@ -20,8 +22,10 @@ interface User {
 
 function FollowListBody() {
   const userToken = useRecoilValue(userTokenState);
-
+  const checkList = useRecoilValue(checkListState);
   const [selectedFollow, setSelectedFollow] = useState(true);
+
+  const { mutate: followUser } = useFollowUnFollowedUser();
 
   const {
     data: followLists,
@@ -40,11 +44,16 @@ function FollowListBody() {
     return <div>데이터 패치 중 에러발생.</div>;
   }
 
-  const handleFollowButtonClick = () => {
+  const handleFollowButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
     setSelectedFollow(false);
   };
 
-  const handleGoFollow = () => {};
+  // 사용자 팔로우 함수
+  const handleFollowUser = () => {
+    checkList.forEach(userId => {
+      followUser({ token: userToken, userId });
+    });
+  };
 
   return (
     <div>
@@ -68,7 +77,7 @@ function FollowListBody() {
       )}
       <St.FollowButtonContainer>
         <Image src={UpArrowIcon} alt="맞팔하기 컨테이너 올리기 버튼" />
-        <St.GoFollowButton type="button" onClick={handleGoFollow}>
+        <St.GoFollowButton type="button" onClick={handleFollowUser}>
           맞팔하기!
         </St.GoFollowButton>
       </St.FollowButtonContainer>
