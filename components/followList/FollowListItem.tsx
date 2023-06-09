@@ -20,7 +20,7 @@ function FollowListItem({ user, showCheckbox }: FollowListItemProps) {
           {user.login}
         </St.ListUserInfo>
 
-        <div>{showCheckbox && <Checkbox />}</div>
+        <div>{showCheckbox && <Checkbox login={user.login} />}</div>
       </St.UserListWrapper>
     </div>
   );
