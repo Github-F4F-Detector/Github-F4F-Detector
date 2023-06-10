@@ -19,7 +19,6 @@ function FollowListItem({ user, showCheckbox }: FollowListItemProps) {
           <St.FollowListProfile src={user.avatar_url} alt="유저 프로필 사진" width={45} height={45} />
           {user.login}
         </St.ListUserInfo>
-
         <div>{showCheckbox && <Checkbox />}</div>
       </St.UserListWrapper>
     </div>
@@ -27,7 +26,6 @@ function FollowListItem({ user, showCheckbox }: FollowListItemProps) {
 }
 
 export default FollowListItem;
-
 const St = {
   ListUserInfo: styled.div`
     display: flex;

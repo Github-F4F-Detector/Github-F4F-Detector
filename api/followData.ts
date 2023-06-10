@@ -19,7 +19,7 @@ export const fetchNonFollowingUsers = async (
 
   const following = followingResponse.data;
 
-  const followersResponse = await axios.get<User[]>(`${BASE_URL}/user/followers`, {
+  const followersResponse = await axios.get<User[]>(`${BASE_URL}/user/followers?per_page=${PER_PAGE}`, {
     headers: {
       Authorization: `token ${token}`,
     },

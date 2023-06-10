@@ -4,6 +4,7 @@ import User from 'types/userTypes';
 
 import { COLOR } from '@/styles/colors';
 
+import AllCheckBox from './AllCheckBox';
 import FollowListItem from './FollowListItem';
 
 interface FollowListProps {
@@ -15,6 +16,7 @@ function FollowListMap({ users, showCheckbox }: FollowListProps) {
   return (
     <St.AllListContainer>
       <St.ListWrapper>
+        <AllCheckBox />
         {users.map(user => (
           <FollowListItem key={user.login} user={user} avatar_url={user.avatar_url} showCheckbox={showCheckbox} />
         ))}
@@ -35,7 +37,7 @@ const St = {
     border: 0.2rem solid ${COLOR.main_black};
     border-radius: 6rem;
     width: 39rem;
-    height: 44.6rem;
+    height: 50rem;
     overflow: scroll;
   `,
 
@@ -43,7 +45,7 @@ const St = {
     position: relative;
     top: 0rem;
     z-index: 3;
-    margin: 0 4.4rem;
+    margin: 5rem 4.4rem 0 4.4rem;
     font-size: 1.5rem;
   `,
 };

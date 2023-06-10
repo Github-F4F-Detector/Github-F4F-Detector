@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { allCheckedState } from 'states/check';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
 function Checkbox({ text }: any) {
+  const [isChecked, setIsChecked] = useState(false);
+  const [allCheckedStatus, setAllCheckedStatus] = useRecoilState(allCheckedState);
+
+  useEffect(() => {
+    if (allCheckedStatus === '모두 선택') {
+      setIsChecked(true);
+    } else if (allCheckedStatus === '모두 해제') {
+      setIsChecked(false);
+    }
+  }, [allCheckedStatus]);
+
+  const handleOnClick = () => {
+    if (allCheckedStatus === ('모두 선택' || '모두 해제')) {
+      setAllCheckedStatus('개별선택');
+    }
+    setIsChecked(!isChecked);
+  };
+
   return (
-    <St.Label htmlFor={text}>
-      <St.Input type="checkbox" id={text} name={text} />
+    <St.Label htmlFor={text} onClick={handleOnClick}>
+      <St.Input type="checkbox" id={text} name={text} checked={isChecked} />
       <St.Text>{text}</St.Text>
     </St.Label>
   );
