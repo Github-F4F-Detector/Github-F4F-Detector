@@ -18,5 +18,5 @@ react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 
 
 ## 질문
 * header에 token을 넣어야 하는데 `Cient(token)`이런식으로 axiosInstance를 만드는 방식이 괜찮은지 궁금합니다!
-* 
+* useQuery에서 queryFn에 `api/followData.ts` following, follower를 부르는 api 처리를 묶어놓았는데 이런 방식이 괜찮은 방식인지 궁금합니다! 또 더 나은 방식이 있다면 어떤 방식일까요?
 
