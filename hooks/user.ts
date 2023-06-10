@@ -18,7 +18,8 @@ export const useFollowUnFollowedUser = () => {
   const queryClient = useQueryClient();
   return useMutation(followUnFollowedUsers, {
     onSuccess() {
-      queryClient.invalidateQueries([QUERY_KEY.followList, QUERY_KEY.profile]);
+      queryClient.invalidateQueries([QUERY_KEY.followList]);
+      queryClient.invalidateQueries([QUERY_KEY.profile]);
     },
   });
 };
