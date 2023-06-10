@@ -20,7 +20,7 @@ function Checkbox({ text, login }: any) {
   }, [allCheckedStatus]);
 
   const handleOnClick = () => {
-    if (allCheckedStatus === ('모두 선택' || '모두 해제')) {
+    if (allCheckedStatus === '모두 선택' || allCheckedStatus === '모두 해제') {
       setAllCheckedStatus('개별선택');
     }
     setIsChecked(!isChecked);
