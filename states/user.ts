@@ -7,7 +7,7 @@ const { persistAtom } = recoilPersist({
   storage: sessionStorage,
 });
 
-export const userTokenState = atom({
+export const userTokenState = atom<string>({
   key: 'userTokenState',
   default: '',
   effects_UNSTABLE: [persistAtom],
