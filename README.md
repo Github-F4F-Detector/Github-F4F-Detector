@@ -16,7 +16,7 @@ react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 
 * 전체 스크롤 막기
 * 비어있을 때 뷰 만들기
 
-## Review Point
+## 질문
 * header에 token을 넣어야 하는데 `Cient(token)`이런식으로 axiosInstance를 만드는 방식이 괜찮은지 궁금합니다!
 * 
 
