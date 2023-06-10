@@ -4,7 +4,8 @@ interface FollowPutProps {
   token: string;
   userId: string;
 }
-export const followUnFollowedUsers = (props: FollowPutProps) => {
+export const followUnFollowedUsers = async (props: FollowPutProps) => {
   const { token, userId } = props;
-  return Client(token).put(`/user/following/${userId}`);
+  const { data } = await Client(token).put(`/user/following/${userId}`);
+  return data;
 };
