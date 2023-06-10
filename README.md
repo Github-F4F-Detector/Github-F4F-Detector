@@ -18,5 +18,5 @@ react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 
 
 ## Review Point
 * header에 token을 넣어야 하는데 `Cient(token)`이런식으로 axiosInstance를 만드는 방식이 괜찮은지 궁금합니다!
-
+* 
 
