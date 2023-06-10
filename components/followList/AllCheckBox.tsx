@@ -1,16 +1,20 @@
 import React from 'react';
 import Image from 'next/image';
 import { AllCheckboxIcon, AllNonCheckboxIcon } from 'public/icon';
+import { useSetRecoilState } from 'recoil';
+import { allCheckedState } from 'states/check';
 import styled from 'styled-components';
 
 function AllCheckBox() {
+  const setAllCheckedStatus = useSetRecoilState<string>(allCheckedState);
+
   return (
     <St.SelectContainer>
-      <St.AllCheckboxWrapper>
+      <St.AllCheckboxWrapper onClick={() => setAllCheckedStatus('모두 선택')}>
         <Image src={AllCheckboxIcon} alt="모두선택 아이콘" width={11} height={11} />
         <St.AllCheckboxText>모두 선택</St.AllCheckboxText>
       </St.AllCheckboxWrapper>
-      <St.AllNonCheckboxWrapper>
+      <St.AllNonCheckboxWrapper onClick={() => setAllCheckedStatus('모두 해제')}>
         <Image src={AllNonCheckboxIcon} alt="모두해지 아이콘" width={11} height={11} />
         <St.AllCheckboxText>모두 해지</St.AllCheckboxText>
       </St.AllNonCheckboxWrapper>
@@ -19,6 +23,7 @@ function AllCheckBox() {
 }
 
 export default AllCheckBox;
+
 const St = {
   AllNonCheckboxWrapper: styled.div`
     display: flex;
@@ -50,8 +55,8 @@ const St = {
   SelectContainer: styled.div`
     display: flex;
     position: absolute;
-    top: 27rem;
-    right: 4rem;
+    top: -3rem;
+    right: 0;
     z-index: 2;
   `,
 };

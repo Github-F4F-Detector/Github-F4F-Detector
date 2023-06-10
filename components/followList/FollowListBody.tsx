@@ -11,7 +11,6 @@ import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
-import AllCheckBox from './AllCheckBox';
 import FollowListMap from './FollowListMap';
 import MyProfile from './MyProfile';
 
@@ -68,10 +67,7 @@ function FollowListBody() {
       </St.ButtonContainer>
 
       {selectedFollow ? (
-        <div>
-          <AllCheckBox />
-          <FollowListMap users={followLists?.nonFollowing || []} showCheckbox />
-        </div>
+        <FollowListMap users={followLists?.nonFollowing || []} showCheckbox />
       ) : (
         <FollowListMap users={followLists?.matchingUsers || []} showCheckbox={false} />
       )}

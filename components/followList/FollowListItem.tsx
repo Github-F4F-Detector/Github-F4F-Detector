@@ -27,7 +27,6 @@ function FollowListItem({ user, showCheckbox }: FollowListItemProps) {
 }
 
 export default FollowListItem;
-
 const St = {
   ListUserInfo: styled.div`
     display: flex;

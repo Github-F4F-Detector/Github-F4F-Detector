@@ -1,12 +1,31 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { allCheckedState } from 'states/check';
 import { checkListState } from 'states/follow';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
 function Checkbox({ text, login }: any) {
+  const [isChecked, setIsChecked] = useState(false);
+  const [allCheckedStatus, setAllCheckedStatus] = useRecoilState(allCheckedState);
   const [checkList, setCheckList] = useRecoilState(checkListState);
+
+  useEffect(() => {
+    if (allCheckedStatus === '모두 선택') {
+      setIsChecked(true);
+    } else if (allCheckedStatus === '모두 해제') {
+      setIsChecked(false);
+    }
+  }, [allCheckedStatus]);
+
+  const handleOnClick = () => {
+    if (allCheckedStatus === ('모두 선택' || '모두 해제')) {
+      setAllCheckedStatus('개별선택');
+    }
+    setIsChecked(!isChecked);
+  };
+
   // check된 항목 배열에 추가/삭제 함수
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -18,9 +37,10 @@ function Checkbox({ text, login }: any) {
       setCheckList([...checkList, value]);
     }
   };
+
   return (
-    <St.Label htmlFor={text}>
-      <St.Input type="checkbox" id={text} name={text} value={login} onChange={handleOnChange} />
+    <St.Label htmlFor={text} onClick={handleOnClick}>
+      <St.Input type="checkbox" id={text} name={text} checked={isChecked} value={login} onChange={handleOnChange} />
       <St.Text>{text}</St.Text>
     </St.Label>
   );
