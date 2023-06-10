@@ -1,6 +1,6 @@
 
 ## Trouble Shooting
-react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 않는 줄 알고 오래 다루다가, github API response header에 담긴 cache-control에 의해 브라우저에서 캐싱되고 있었다는 것을 알게되었습니다 . . .
+react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 않는 줄 알고 오래 다루다가, github API response header에 담긴 cache-control에 의해 브라우저에서 캐싱되고 있었다는 것을 알게되었습니다 . . . 그래서... 좀 코드가.. 미흡한 점.. 죄..송..합...니..다...
 
 ❓ 이런 경우 브라우저 cache를 쓰지 못하도록 막아도 괜찮은가요?
 
