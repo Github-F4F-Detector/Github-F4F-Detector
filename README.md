@@ -19,4 +19,13 @@ react query에서의 caching 문제로 인해 invalidateQueries가 작동하지 
 ## 질문
 * header에 token을 넣어야 하는데 `Cient(token)`이런식으로 axiosInstance를 만드는 방식이 괜찮은지 궁금합니다!
 * useQuery에서 queryFn에 `api/followData.ts` following, follower를 부르는 api 처리를 묶어놓았는데 이런 방식이 괜찮은 방식인지 궁금합니다! 또 더 나은 방식이 있다면 어떤 방식일까요?
-
+* components/followListBody.tsx에서 선택한 사용자를 follow하는 구현입니다.
+```tsx
+  // 사용자 팔로우 함수
+  const handleFollowUser = () => {
+    checkList.forEach(userId => {
+      followUser({ token: userToken, userId });
+    });
+  };
+```
+이렇게 리스트에 반복문으로 돌려서 mutate 함수를 호출하고 있는데 괜찮은 방법인지 궁금합니다!
