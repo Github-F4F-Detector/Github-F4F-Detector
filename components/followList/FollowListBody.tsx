@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNonFollowingUsers } from 'api/followData';
+import { fetchFollowingInfo } from 'api/followData';
 import { useFollowUnFollowedUser } from 'hooks/user';
 import Image from 'next/image';
 import { UpArrowIcon } from 'public/icon';
@@ -8,16 +8,12 @@ import { useRecoilValue } from 'recoil';
 import { checkListState } from 'states/follow';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
+import User from 'types/userTypes';
 
 import { COLOR } from '@/styles/colors';
 
 import FollowListMap from './FollowListMap';
 import MyProfile from './MyProfile';
-
-interface User {
-  login: string;
-  avatar_url: string;
-}
 
 function FollowListBody() {
   const userToken = useRecoilValue(userTokenState);
@@ -32,7 +28,7 @@ function FollowListBody() {
     isError,
   } = useQuery<{ following: User[]; nonFollowing: User[]; matchingUsers: User[] }, Error>(
     ['followLists', userToken],
-    () => fetchNonFollowingUsers(userToken),
+    () => fetchFollowingInfo(userToken),
   );
 
   if (isLoading) {
@@ -44,7 +40,7 @@ function FollowListBody() {
   }
 
   const handleFollowButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    setSelectedFollow(false);
+    setSelectedFollow(!selectedFollow);
   };
 
   // 사용자 팔로우 함수
@@ -58,7 +54,7 @@ function FollowListBody() {
     <div>
       <MyProfile />
       <St.ButtonContainer>
-        <St.NoneFollowButton type="button" onClick={() => setSelectedFollow(true)}>
+        <St.NoneFollowButton type="button" onClick={handleFollowButtonClick}>
           맞팔 아닌 사람
         </St.NoneFollowButton>
         <St.FollowButton type="button" onClick={handleFollowButtonClick} disabled={!selectedFollow}>

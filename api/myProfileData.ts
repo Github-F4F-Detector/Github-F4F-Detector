@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { Client } from '.';
 
 interface MyProfile {
   avatar_url: string;
@@ -9,11 +9,6 @@ interface MyProfile {
 }
 
 export const fetchMyProfile = async (token: string): Promise<MyProfile> => {
-  const baseUrl = 'https://api.github.com';
-  const response = await axios.get<MyProfile>(`${baseUrl}/user`, {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
+  const response = await Client(token).get<MyProfile>(`/user`);
   return response.data;
 };

@@ -1,8 +1,6 @@
-interface User {
-  avatar_url: string;
+export default interface User {
+  avatar_url?: string;
   id?: number;
   login?: string;
   following?: boolean;
 }
-
-export default User;

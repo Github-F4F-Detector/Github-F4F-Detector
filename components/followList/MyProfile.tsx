@@ -1,50 +1,28 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useFetchMyProfile } from 'hooks/user';
 import { useRecoilValue } from 'recoil';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
-import { fetchMyProfile } from '../../api/myProfileData';
-
-interface MyProfileProps {
-  avatar_url: string;
-  bio: string;
-  login: string;
-  followers: number;
-  following: number;
-}
-
 function MyProfile() {
   const userToken = useRecoilValue(userTokenState);
 
-  const {
-    data: userProfile,
-    isLoading,
-    isError,
-  } = useQuery<MyProfileProps, Error>(['userProfile', userToken], () => fetchMyProfile(userToken));
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error occurred while fetching user profile.</div>;
-  }
+  const userProfile = useFetchMyProfile(userToken);
 
   return (
     <St.UserInfoContainer>
-      <St.ProfileImage src={userProfile.avatar_url} alt="Profile Avatar" width={70} height={70} />
+      <St.ProfileImage src={userProfile?.avatar_url} alt="Profile Avatar" width={70} height={70} />
       <St.ProfileContainer>
-        <St.NickName> {userProfile.login}</St.NickName>
-        <St.Bio> {userProfile.bio}</St.Bio>
+        <St.NickName> {userProfile?.login}</St.NickName>
+        <St.Bio> {userProfile?.bio}</St.Bio>
         <St.FollowCount>
           <St.FollowerWrapper>
-            <St.Follower>팔로워: {userProfile.followers}</St.Follower>
+            <St.Follower>팔로워: {userProfile?.followers}</St.Follower>
           </St.FollowerWrapper>
           <St.FollowingWrapper>
-            <St.Following>팔로잉: {userProfile.following}</St.Following>
+            <St.Following>팔로잉: {userProfile?.following}</St.Following>
           </St.FollowingWrapper>
         </St.FollowCount>
       </St.ProfileContainer>

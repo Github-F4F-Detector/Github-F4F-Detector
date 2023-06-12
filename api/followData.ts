@@ -1,29 +1,17 @@
-import axios from 'axios';
+import User from 'types/userTypes';
 
-interface User {
-  login: string;
-  avatar_url: string;
-}
+import { FetchFollowingInfoResult } from '../types/fetchFollowingInfoTypes';
 
-export const fetchNonFollowingUsers = async (
-  token: string,
-): Promise<{ following: User[]; nonFollowing: User[]; matchingUsers: User[] }> => {
-  const BASE_URL = 'https://api.github.com';
+import { Client } from '.';
+
+export const fetchFollowingInfo = async (token: string): Promise<FetchFollowingInfoResult> => {
   const PER_PAGE = 100;
 
-  const followingResponse = await axios.get<User[]>(`${BASE_URL}/user/following?per_page=${PER_PAGE}`, {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
+  const followingResponse = await Client(token).get<User[]>(`/user/following?per_page=${PER_PAGE}`);
 
   const following = followingResponse.data;
 
-  const followersResponse = await axios.get<User[]>(`${BASE_URL}/user/followers?per_page=${PER_PAGE}`, {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
+  const followersResponse = await Client(token).get<User[]>(`/user/followers?per_page=${PER_PAGE}`);
 
   const followers = followersResponse.data;
 
