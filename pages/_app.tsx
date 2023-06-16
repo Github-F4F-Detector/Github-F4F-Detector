@@ -19,6 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
         suspense: true,
         useErrorBoundary: true,
       },
+      mutations: {
+        useErrorBoundary: true,
+      },
     },
   });
   return (
