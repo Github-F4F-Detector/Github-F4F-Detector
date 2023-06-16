@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchNonFollowingUsers } from 'api/followData';
+import { fetchFollowingInfo } from 'api/followData';
 import { followUnFollowedUsers } from 'api/followUser';
 import { fetchMyProfile } from 'api/myProfileData';
 import { MyProfileProps } from 'types/myProfile';
@@ -10,8 +10,8 @@ export const useFetchMyProfile = (userToken: string) => {
   const { data } = useQuery<MyProfileProps, Error>([QUERY_KEY.profile, userToken], () => fetchMyProfile(userToken));
   return data;
 };
-export const useFetchNonFollowingUsers = (userToken: string) => {
-  const { data } = useQuery([QUERY_KEY.followList, userToken], () => fetchNonFollowingUsers(userToken));
+export const useFetchFollowingInfo = (userToken: string) => {
+  const { data } = useQuery([QUERY_KEY.followList, userToken], () => fetchFollowingInfo(userToken));
   return data;
 };
 

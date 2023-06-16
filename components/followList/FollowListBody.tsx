@@ -1,14 +1,12 @@
 import React, { MouseEventHandler, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { fetchFollowingInfo } from 'api/followData';
 import { useFollowUnFollowedUser } from 'hooks/user';
+import { useFetchFollowingInfo } from 'hooks/user';
 import Image from 'next/image';
 import { UpArrowIcon } from 'public/icon';
 import { useRecoilValue } from 'recoil';
 import { checkListState } from 'states/follow';
 import { userTokenState } from 'states/user';
 import styled from 'styled-components';
-import User from 'types/userTypes';
 
 import { COLOR } from '@/styles/colors';
 
@@ -22,22 +20,7 @@ function FollowListBody() {
 
   const { mutate: followUser } = useFollowUnFollowedUser();
 
-  const {
-    data: followLists,
-    isLoading,
-    isError,
-  } = useQuery<{ following: User[]; nonFollowing: User[]; matchingUsers: User[] }, Error>(
-    ['followLists', userToken],
-    () => fetchFollowingInfo(userToken),
-  );
-
-  if (isLoading) {
-    return <div>로딩중...</div>;
-  }
-
-  if (isError) {
-    return <div>데이터 패치 중 에러발생.</div>;
-  }
+  const followLists = useFetchFollowingInfo(userToken);
 
   const handleFollowButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
     setSelectedFollow(!selectedFollow);
