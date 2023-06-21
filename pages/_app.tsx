@@ -9,7 +9,7 @@ import GlobalStyle from '@/styles/globalStyle';
 // 서버로 요청이 들어왔을 때 가장 먼저 실행되는 컴포넌트.
 // 공통 레이아웃 적용
 export default function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({});
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>

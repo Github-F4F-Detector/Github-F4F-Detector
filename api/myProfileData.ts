@@ -1,19 +1,8 @@
-import axios from 'axios';
+import { MyProfileProps } from 'types/myProfile';
 
-interface MyProfile {
-  avatar_url: string;
-  bio: string;
-  login: string;
-  followers: number;
-  following: number;
-}
+import { Client } from '.';
 
-export const fetchMyProfile = async (token: string): Promise<MyProfile> => {
-  const baseUrl = 'https://api.github.com';
-  const response = await axios.get<MyProfile>(`${baseUrl}/user`, {
-    headers: {
-      Authorization: `token ${token}`,
-    },
-  });
+export const fetchMyProfile = async (token: string): Promise<MyProfileProps> => {
+  const response = await Client(token).get<MyProfileProps>(`/user`);
   return response.data;
 };

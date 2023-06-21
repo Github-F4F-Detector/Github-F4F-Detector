@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { COLOR } from '@/styles/colors';
 
-function Checkbox({ text, login }: any) {
+function Checkbox({ login }: { login: string | undefined }) {
   const [isChecked, setIsChecked] = useState(false);
   const [allCheckedStatus, setAllCheckedStatus] = useRecoilState(allCheckedState);
   const [checkList, setCheckList] = useRecoilState(checkListState);
@@ -39,9 +39,9 @@ function Checkbox({ text, login }: any) {
   };
 
   return (
-    <St.Label htmlFor={text} onClick={handleOnClick}>
-      <St.Input type="checkbox" id={text} name={text} checked={isChecked} value={login} onChange={handleOnChange} />
-      <St.Text>{text}</St.Text>
+    <St.Label htmlFor={String(login)} onClick={handleOnClick}>
+      <St.Input type="checkbox" id={login} name={login} checked={isChecked} value={login} onChange={handleOnChange} />
+      <St.Text />
     </St.Label>
   );
 }

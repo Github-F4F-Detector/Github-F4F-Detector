@@ -7,7 +7,7 @@ import { COLOR } from '@/styles/colors';
 import AllCheckBox from './AllCheckBox';
 import FollowListItem from './FollowListItem';
 
-interface FollowListProps {
+interface FollowListProps extends User {
   users: User[];
   showCheckbox: boolean;
 }
@@ -17,8 +17,15 @@ function FollowListMap({ users, showCheckbox }: FollowListProps) {
     <St.AllListContainer>
       <St.ListWrapper>
         <AllCheckBox />
-        {users.map(user => (
-          <FollowListItem key={user.login} user={user} avatar_url={user.avatar_url} showCheckbox={showCheckbox} />
+        {users.map(({ id, login, avatar_url }) => (
+          <FollowListItem
+            key={login}
+            user={{ login, avatar_url }}
+            showCheckbox={showCheckbox}
+            avatar_url={avatar_url}
+            id={id}
+            following={false}
+          />
         ))}
       </St.ListWrapper>
     </St.AllListContainer>
