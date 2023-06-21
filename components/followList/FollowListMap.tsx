@@ -17,13 +17,13 @@ function FollowListMap({ users, showCheckbox }: FollowListProps) {
     <St.AllListContainer>
       <St.ListWrapper>
         <AllCheckBox />
-        {users.map(({ login, avatar_url }) => (
+        {users.map(({ id, login, avatar_url }) => (
           <FollowListItem
             key={login}
             user={{ login, avatar_url }}
             showCheckbox={showCheckbox}
             avatar_url={avatar_url}
-            id={0}
+            id={id}
             following={false}
           />
         ))}
